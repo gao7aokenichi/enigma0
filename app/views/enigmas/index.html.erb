@@ -1,0 +1,5 @@
+<div class="contents row">
+  <% @enigmas.each do |enigma| %>
+    <%= render partial: "enigma", locals: { enigma: enigma } %>
+  <% end %>
+</div>

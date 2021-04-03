@@ -1,0 +1,6 @@
+<div class="contents row">
+  <p><%= @nickname %>さんの投稿一覧</p>
+  <% @enigmas.each do |enigma| %>
+    <%= render partial: "enigmas/enigma", locals: { enigma: enigma } %>
+  <% end %>
+</div>
