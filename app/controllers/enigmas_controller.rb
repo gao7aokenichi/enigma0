@@ -1,6 +1,6 @@
 class EnigmasController < ApplicationController
   before_action :set_enigma, only: [:edit, :show]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
   
   def index
     @enigmas = Enigma.includes(:user).order("created_at DESC")
@@ -11,6 +11,7 @@ class EnigmasController < ApplicationController
   end
 
   def create
+    binding.pry
     Enigma.create(enigma_params)
   end
 
@@ -28,6 +29,12 @@ class EnigmasController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @enigma.comments.includes(:user)
+  end
+
+  def search
+    @enigmas = Enigma.search(params[:keyword])
   end
 
   private
